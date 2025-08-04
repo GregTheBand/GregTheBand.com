@@ -1,0 +1,304 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greg The Band</title>
+    <style>
+        @font-face {
+            font-family: 'Chinese Rocks';
+            src: url('fonts/chinese rocks rg.woff2') format('woff2'),
+                 url('fonts/chinese rocks rg.woff') format('woff'),
+                 url('fonts/chinese rocks rg.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        body {
+            margin: 0;
+            font-family: 'Chinese Rocks', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #E6F0FA;
+            color: #333;
+        }
+        header {
+            background-color: #E6F0FA;
+            color: #333;
+            padding: 1rem;
+            text-align: center;
+        }
+        header img {
+            max-width: 100%;
+            height: auto;
+            width: 300px;
+        }
+        nav {
+            background-color: #E6F0FA;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+            font-family: 'Chinese Rocks', sans-serif;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            background-color: #F5E8C7;
+            border-radius: 5px;
+        }
+        .hero {
+            text-align: center;
+            padding: 30px 0 2rem; /* Increased top padding to 30px for more space */
+            background-color: transparent;
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero img {
+            width: 600px;
+            height: 600px;
+            object-fit: cover;
+            object-position: center;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .hero img.active {
+            display: block;
+            opacity: 1;
+        }
+        .section {
+            padding: 2rem;
+            text-align: center;
+            background-color: transparent;
+            margin: 1rem auto;
+            max-width: 800px;
+            border-radius: 5px;
+        }
+        .tour ul {
+            list-style: none;
+            padding: 0;
+        }
+        .tour li {
+            margin: 0.5rem 0;
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact input, .contact textarea {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact button {
+            background-color: #F5E8C7;
+            color: #333;
+            border: none;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-family: 'Chinese Rocks', sans-serif;
+            border-radius: 5px;
+        }
+        .contact button:hover {
+            background-color: #E0D4B1;
+        }
+        footer {
+            background-color: #E6F0FA;
+            color: #333;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        .social a {
+            color: #333;
+            margin: 0 0.5rem;
+            text-decoration: none;
+            font-family: 'Chinese Rocks', sans-serif;
+        }
+        .social a:hover {
+            color: #555;
+        }
+        .music audio {
+            display: block;
+            margin: 1rem auto;
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .music label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        @media (max-width: 600px) {
+            header img {
+                width: 200px;
+            }
+            .hero {
+                height: 100vw;
+                padding: 30px 0 1rem; /* Adjusted top padding for mobile */
+            }
+            .hero img {
+                width: 100%;
+                height: 100%;
+            }
+            .music audio {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="greg-logo.png" alt="Greg The Band Logo">
+    </header>
+    <nav>
+        <a href="#home" class="active">HOME</a>
+        <a href="#music">MUSIC</a>
+        <a href="#video">VIDEO</a>
+        <a href="#dates">DATES</a>
+        <a href="#">SHOP</a>
+    </nav>
+    <main>
+        <section class="hero">
+            <img src="Promo1.jpg" alt="Promo 1" class="active">
+            <img src="Promo2.png" alt="Promo 2">
+            <img src="Promo3.png" alt="Promo 3">
+            <img src="Promo4.jpg" alt="Promo 4">
+            <img src="Promo5.jpg" alt="Promo 5">
+            <img src="Promo6.jpg" alt="Promo 6">
+            <img src="Promo7.jpg" alt="Promo 7">
+        </section>
+        <section class="music section" id="music">
+            <h2>Music</h2>
+            <label>Take On Me</label>
+            <audio controls>
+                <source src="Take On Me.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <label>Easy</label>
+            <audio controls>
+                <source src="Easy.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <label>Everybody</label>
+            <audio controls>
+                <source src="Everybody.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <label>Homage</label>
+            <audio controls>
+                <source src="Homage.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <label>Mr Blue Sky</label>
+            <audio controls>
+                <source src="Mr Blue Sky.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </section>
+        <section class="video section" id="video">
+            <h2>Video</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ENZmBshpJpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+        <section class="tour section" id="dates">
+            <h2>Dates</h2>
+            <ul>
+                <li>September 6th, 2025 - Match Eatery, Callander, Ontario</li>
+            </ul>
+        </section>
+        <section class="contact section" id="booking">
+            <h2>Booking</h2>
+            <form action="https://formspree.io/f/your_form_id" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="social">
+            <a href="https://instagram.com/greg_the_band">Instagram</a>
+            <a href="https://facebook.com/greg.aultman.2025">Facebook</a>
+        </div>
+        <p>&copy; 2025 Greg The Band. All rights reserved.</p>
+    </footer>
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.hero img');
+        function showSlides() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slideIndex = (slideIndex + 1) % slides.length;
+            slides[slideIndex].classList.add('active');
+        }
+        setInterval(showSlides, 4000);
+        showSlides(); // Initial call to display the first slide
+    </script>
+</body>
+</html>
