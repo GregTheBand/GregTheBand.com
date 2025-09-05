@@ -7,12 +7,39 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-WDLQDPZX8W');
 </script>
+
+<!-- Structured Data (Step 4) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Greg The Band",
+  "url": "https://yourdomain.com",
+  "genre": "Rock",
+  "sameAs": [
+    "https://instagram.com/greg_the_band",
+    "https://facebook.com/greg.aultman.2025"
+  ]
+}
+</script>
+
+<!-- Meta SEO Tags (Step 1) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greg The Band | Official Site</title>
+<meta name="description" content="Greg The Band is a high-energy rock group with unforgettable live performances, music previews, merch, and tour dates across Ontario.">
+<meta name="keywords" content="Greg The Band, GregTheBand, Greg, TheGreg, rock band, Canadian band, tour dates, live shows, music preview, band merch, psych-rock, indie-rock, psychedelic, rush, mild high club, kind gizzard">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gregtheband.com/">
+
+<!-- Favicon (optional) -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greg The Band</title>
+    <title>Greg The Band | Official Site</title>
+
     <style>
         @font-face {
             font-family: 'Chinese Rocks';
@@ -32,12 +59,17 @@
             background: url('Wallpaper.jpg') center top repeat-y; background-size: cover;
             color: #333;
             overflow-x: hidden;
+            padding: 0 1rem;
         }
         main {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            box-sizing: border-box;
         }
         header {
             background-color: #E6F0FA;
@@ -81,6 +113,7 @@
             max-width: 800px;
             aspect-ratio: 1 / 1;
             overflow: hidden;
+            min-height: 300px;
         }
         .hero img {
             width: 100%;
@@ -97,15 +130,17 @@
         .hero img.active {
             display: block;
             opacity: 1;
+            z-index: 1;
         }
         .section {
-            padding: 2rem;
+            padding: 2rem 1rem;
             text-align: center;
             background-color: transparent;
             width: 100%;
             max-width: 800px;
             margin: 1rem auto;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         .video iframe {
             width: 100%;
@@ -161,6 +196,9 @@
         .social a:hover {
             color: #555;
         }
+        .music {
+            text-align: center;
+        }
         .music audio {
             display: block;
             margin: 1rem auto;
@@ -171,6 +209,8 @@
             border-radius: 5px;
             padding: 0.5rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            left: -7px; /* shift slightly left to visually center */
         }
         .music label {
             display: block;
@@ -186,95 +226,29 @@
             .hero {
                 aspect-ratio: auto;
                 height: auto;
+                padding: 1rem 0;
+            }
+            .hero img {
+                height: auto;
+                object-fit: contain;
+            }
+            .section {
+                padding: 1rem;
+            }
+            nav a {
+                margin: 0.25rem 0.5rem;
+                font-size: 1rem;
+            }
+            .contact form {
+                width: 100%;
+                padding: 0 0.5rem;
+                box-sizing: border-box;
             }
             .music audio {
-                max-width: 100%;
+                left: 0; /* remove shift on small screens */
             }
         }
-    
-body {
-    padding: 0 1rem; /* ADD small padding for narrow screens */
-}
-
-main {
-    width: 100%;
-    max-width: 1000px; /* ADD cap to avoid ultra-wide stretching */
-    margin: 0 auto;
-    padding: 0 1rem; /* ADD for small screens */
-    box-sizing: border-box;
-}
-
-.hero {
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    max-width: 800px;
-}
-
-@media (max-width: 600px) {
-    .hero {
-        aspect-ratio: auto;
-        height: auto;
-        padding: 1rem 0;
-    }
-
-    .hero img {
-        height: auto;
-        object-fit: contain;
-    }
-
-    .section {
-        padding: 1rem; /* tighter padding */
-    }
-
-    nav a {
-        margin: 0.25rem 0.5rem;
-        font-size: 1rem;
-    }
-
-    .contact form {
-        width: 100%;
-        padding: 0 0.5rem;
-        box-sizing: border-box;
-    }
-}
-
-
-.hero {
-    width: 100%;
-    max-width: 800px;
-    aspect-ratio: 1 / 1;
-    position: relative;
-    min-height: 300px; /* fallback height */
-}
-
-.hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-.hero img.active {
-    opacity: 1;
-    display: block;
-    z-index: 1;
-}
-
-.section {
-    width: 100%;
-    max-width: 800px;
-    margin: 1rem auto;
-    padding: 2rem 1rem;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-</style>
+    </style>
 </head>
 <body>
     <header>
@@ -286,12 +260,12 @@ main {
         <a href="#video">VIDEO</a>
         <a href="#dates">DATES</a>
         <a href="#shop">MERCH</a>
-	<a href="#booking">BOOK US</a>
+        <a href="#booking">BOOK US</a>
     </nav>
     <main>
-        <section class="hero">
+        <section class="hero" id="home">
             <img src="Promo2.jpg" alt="Promo 2" class="active">
-	    <img src="Promo8.jpg" alt="Promo 8">
+            <img src="Promo8.jpg" alt="Promo 8">
             <img src="Promo1.png" alt="Promo 1">
             <img src="Promo3.png" alt="Promo 3">
             <img src="Promo4.jpg" alt="Promo 4">
@@ -299,15 +273,21 @@ main {
             <img src="Promo6.jpg" alt="Promo 6">
             <img src="Promo7.jpg" alt="Promo 7">
         </section>
+
         <section class="music section" id="coming-soon">
             <img src="COMING SOON.png" alt="COMING SOON" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
-            <label>Going Up! (Preview)</label>
+            <label>Going Up! (SAMPLE)</label>
             <audio controls>
                 <source src="Going Up! Preview.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+            <label>If You Were Real (SAMPLE)</label>
+            <audio controls>
+                <source src="If You Were Real (Preview).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </section>
-        <section class="music section" id="music">
+
         <section class="music section" id="music">
             <img src="MUSIC.png" alt="MUSIC" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <label>Take On Me</label>
@@ -336,18 +316,20 @@ main {
                 Your browser does not support the audio element.
             </audio>
         </section>
+
         <section class="video section" id="video">
             <img src="VIDEO.png" alt="VIDEO" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <iframe src="https://www.youtube.com/embed/ENZmBshpJpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
+
         <section class="tour section" id="dates">
             <img src="DATES.png" alt="DATES" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <ul>
-		<li>August 31st, 2025 - Ooey Gooey’s, Hamilton, Ontario</li>
+                <li>August 31st, 2025 - Ooey Gooey’s, Hamilton, Ontario</li>
                 <li>September 6th, 2025 - Match Eatery, Callander, Ontario</li>
             </ul>
         </section>
-        
+
         <section class="shop section" id="shop">
             <img src="MERCH.png" alt="MERCH" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <img src="Shirts.jpg" alt="Greg The Band Merch" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1rem;">
@@ -365,6 +347,7 @@ main {
             </form>
         </section>
     </main>
+
     <footer>
         <div class="social">
             <a href="https://instagram.com/greg_the_band">Instagram</a>
@@ -372,6 +355,7 @@ main {
         </div>
         <p>&copy; 2025 Greg The Band. All rights reserved.</p>
     </footer>
+
     <script>
         let slideIndex = 0;
         const slides = document.querySelectorAll('.hero img');
@@ -385,4 +369,3 @@ main {
     </script>
 </body>
 </html>
-<!-- Triggering redeployment -->

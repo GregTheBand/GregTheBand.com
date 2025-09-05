@@ -25,230 +25,228 @@
 }
 </script>
 
-<!-- Meta SEO Tags (Step 1) -->
+<!-- Meta SEO Tags -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greg The Band | Official Site</title>
 <meta name="description" content="Greg The Band is a high-energy rock group with unforgettable live performances, music previews, merch, and tour dates across Ontario.">
-<meta name="keywords" content="Greg The Band, GregTheBand, Greg, TheGreg, rock band, Canadian band, tour dates, live shows, music preview, band merch, psych-rock, indie-rock, psychedelic, rush, mild high club, kind gizzard">
+<meta name="keywords" content="Greg The Band, GregTheBand, Greg, TheGreg, rock band, Canadian band, tour dates, live shows, music preview, band merch, psych-rock, indie-rock, psychedelic, rush, mild high club, king gizzard">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://gregtheband.com/">
 
-<!-- Favicon (optional) -->
+<!-- Favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greg The Band | Official Site</title>
 
-    <style>
-        @font-face {
-            font-family: 'Chinese Rocks';
-            src: url('fonts/chinese rocks rg.woff2') format('woff2'),
-                 url('fonts/chinese rocks rg.woff') format('woff'),
-                 url('fonts/chinese rocks rg.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-        body {
-            margin: 0;
-            font-family: 'Chinese Rocks', Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background: url('Wallpaper.jpg') center top repeat-y; background-size: cover;
-            color: #333;
-            overflow-x: hidden;
-            padding: 0 1rem;
-        }
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            box-sizing: border-box;
-        }
-        header {
-            background-color: #E6F0FA;
-            color: #333;
-            padding: 1rem;
-            text-align: center;
-        }
+<style>
+    @font-face {
+        font-family: 'Chinese Rocks';
+        src: url('fonts/chinese rocks rg.woff2') format('woff2'),
+             url('fonts/chinese rocks rg.woff') format('woff'),
+             url('fonts/chinese rocks rg.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+    body {
+        margin: 0;
+        font-family: 'Chinese Rocks', Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: url('Wallpaper.jpg') center top repeat-y;
+        background-size: cover;
+        color: #333;
+        overflow-x: hidden;
+        padding: 0 1rem;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
+    }
+    header {
+        background-color: #E6F0FA;
+        color: #333;
+        padding: 1rem;
+        text-align: center;
+    }
+    header img {
+        max-width: 100%;
+        height: auto;
+        width: 500px;
+    }
+    nav {
+        background-color: #E6F0FA;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        flex-wrap: wrap;
+    }
+    nav a {
+        color: #333;
+        text-decoration: none;
+        margin: 0 1rem;
+        font-size: 1.1rem;
+        font-family: 'Chinese Rocks', sans-serif;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s;
+    }
+    nav a:hover, nav a.active {
+        background-color: #F5E8C7;
+        border-radius: 5px;
+    }
+    .hero {
+        text-align: center;
+        padding: 30px 0 2rem;
+        background-color: transparent;
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        min-height: 300px;
+    }
+    .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+    .hero img.active {
+        display: block;
+        opacity: 1;
+        z-index: 1;
+    }
+    .section {
+        padding: 2rem 1rem;
+        text-align: center;
+        background-color: transparent;
+        width: 100%;
+        max-width: 800px;
+        margin: 1rem auto;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .video iframe {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+    .tour ul {
+        list-style: none;
+        padding: 0;
+    }
+    .tour li {
+        margin: 0.5rem 0;
+    }
+    .contact form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .contact input, .contact textarea {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .contact button {
+        background-color: #F5E8C7;
+        color: #333;
+        border: none;
+        padding: 0.75rem;
+        cursor: pointer;
+        font-family: 'Chinese Rocks', sans-serif;
+        border-radius: 5px;
+    }
+    .contact button:hover {
+        background-color: #E0D4B1;
+    }
+    footer {
+        background-color: #E6F0FA;
+        color: #333;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    .social a {
+        color: #333;
+        margin: 0 0.5rem;
+        text-decoration: none;
+        font-family: 'Chinese Rocks', sans-serif;
+    }
+    .social a:hover {
+        color: #555;
+    }
+    .music {
+        text-align: center;
+    }
+    .music audio {
+        display: block;
+        margin: 1rem auto;
+        width: 100%;
+        max-width: 400px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+        left: -7px;
+    }
+    .music label {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+    @media (max-width: 600px) {
         header img {
-            max-width: 100%;
-            height: auto;
-            width: 500px;
-        }
-        nav {
-            background-color: #E6F0FA;
-            padding: 0.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid #ccc;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1.1rem;
-            font-family: 'Chinese Rocks', sans-serif;
-            padding: 0.5rem 1rem;
-            transition: background-color 0.3s;
-        }
-        nav a:hover, nav a.active {
-            background-color: #F5E8C7;
-            border-radius: 5px;
+            width: 200px;
         }
         .hero {
-            text-align: center;
-            padding: 30px 0 2rem;
-            background-color: transparent;
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            min-height: 300px;
+            aspect-ratio: auto;
+            height: auto;
+            padding: 1rem 0;
         }
         .hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        .hero img.active {
-            display: block;
-            opacity: 1;
-            z-index: 1;
+            height: auto;
+            object-fit: contain;
         }
         .section {
-            padding: 2rem 1rem;
-            text-align: center;
-            background-color: transparent;
-            width: 100%;
-            max-width: 800px;
-            margin: 1rem auto;
-            border-radius: 5px;
-            box-sizing: border-box;
+            padding: 1rem;
         }
-        .video iframe {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 9;
-        }
-        .tour ul {
-            list-style: none;
-            padding: 0;
-        }
-        .tour li {
-            margin: 0.5rem 0;
+        nav a {
+            margin: 0.25rem 0.5rem;
+            font-size: 1rem;
         }
         .contact form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .contact input, .contact textarea {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .contact button {
-            background-color: #F5E8C7;
-            color: #333;
-            border: none;
-            padding: 0.75rem;
-            cursor: pointer;
-            font-family: 'Chinese Rocks', sans-serif;
-            border-radius: 5px;
-        }
-        .contact button:hover {
-            background-color: #E0D4B1;
-        }
-        footer {
-            background-color: #E6F0FA;
-            color: #333;
-            text-align: center;
-            padding: 1rem;
-            font-size: 0.9rem;
-        }
-        .social a {
-            color: #333;
-            margin: 0 0.5rem;
-            text-decoration: none;
-            font-family: 'Chinese Rocks', sans-serif;
-        }
-        .social a:hover {
-            color: #555;
-        }
-        .music {
-            text-align: center;
+            width: 100%;
+            padding: 0 0.5rem;
+            box-sizing: border-box;
         }
         .music audio {
-            display: block;
-            margin: 1rem auto;
-            width: 100%;
-            max-width: 400px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            left: -7px; /* shift slightly left to visually center */
+            left: 0;
         }
-        .music label {
-            display: block;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        @media (max-width: 600px) {
-            header img {
-                width: 200px;
-            }
-            .hero {
-                aspect-ratio: auto;
-                height: auto;
-                padding: 1rem 0;
-            }
-            .hero img {
-                height: auto;
-                object-fit: contain;
-            }
-            .section {
-                padding: 1rem;
-            }
-            nav a {
-                margin: 0.25rem 0.5rem;
-                font-size: 1rem;
-            }
-            .contact form {
-                width: 100%;
-                padding: 0 0.5rem;
-                box-sizing: border-box;
-            }
-            .music audio {
-                left: 0; /* remove shift on small screens */
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <header>
@@ -263,6 +261,17 @@
         <a href="#booking">BOOK US</a>
     </nav>
     <main>
+
+        <!-- New Stream/Buy Section -->
+        <section class="section" id="stream-buy">
+            <h2 style="font-size:2rem; margin-bottom:1rem; font-family:'Chinese Rocks', sans-serif;">
+                STREAM OR BUY Going Up! NOW!
+            </h2>
+            <a href="https://linktr.ee/gregtheband" target="_blank">
+                <img src="AlbumCover.jpg" alt="Going Up! Album Cover" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+            </a>
+        </section>
+
         <section class="hero" id="home">
             <img src="Promo2.jpg" alt="Promo 2" class="active">
             <img src="Promo8.jpg" alt="Promo 8">
