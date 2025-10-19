@@ -5,12 +5,12 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDLQDPZX8W"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-WDLQDPZX8W');
 </script>
 
-<!-- Structured Data -->
+<!-- Structured Data (Step 4) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,7 +29,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greg The Band | Official Site</title>
-<meta name="description" content="Greg is a rock band from North Bay, Ontario">
+<meta name="description" content="Greg The Band is a high-energy rock group with unforgettable live performances, music previews, merch, and tour dates across Ontario.">
 <meta name="keywords" content="Greg The Band, GregTheBand, Greg, TheGreg, rock band, Canadian band, tour dates, live shows, music preview, band merch, psych-rock, indie-rock, psychedelic, rush, mild high club, king gizzard">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://gregtheband.com/">
@@ -47,16 +47,6 @@
         font-style: normal;
         font-display: swap;
     }
-    /* Utility: accessible, visually hidden headings for SEO without changing layout */
-    .visually-hidden { 
-        position: absolute !important; 
-        height: 1px; width: 1px; 
-        overflow: hidden; 
-        clip: rect(1px, 1px, 1px, 1px); 
-        white-space: nowrap; 
-        border: 0; padding: 0; margin: -1px; 
-    }
-
     body {
         margin: 0;
         font-family: 'Chinese Rocks', Arial, sans-serif;
@@ -261,8 +251,6 @@
 <body>
     <header>
         <img src="greg-logo.png" alt="Greg The Band Logo">
-        <!-- Primary page heading for SEO -->
-        <h1 class="visually-hidden">Greg The Band — Official Site</h1>
     </header>
     <nav>
         <a href="#home" class="active">HOME</a>
@@ -273,13 +261,8 @@
         <a href="#booking">BOOK US</a>
     </nav>
     <main>
-        <!-- NEW: Coming Soon video section (placed ABOVE Stream/Buy) -->
-        <section class="video section" id="coming-soon-video">
-            <h2 style="font-size:2rem; margin-bottom:1rem; font-family:'Chinese Rocks', sans-serif;">Coming Soon!</h2>
-            <iframe src="https://www.youtube.com/embed/U8_HuJyhxhc" title="Greg The Band - Coming Soon" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </section>
 
-        <!-- Stream/Buy Section -->
+        <!-- New Stream/Buy Section -->
         <section class="section" id="stream-buy">
             <h2 style="font-size:2rem; margin-bottom:1rem; font-family:'Chinese Rocks', sans-serif;">
                 STREAM OR BUY Going Up! NOW!
@@ -300,11 +283,21 @@
             <img src="Promo7.jpg" alt="Promo 7">
         </section>
 
-        <!-- REMOVED the old Coming Soon audio previews section -->
-        <!-- Previously: <section class="music section" id="coming-soon"> ... </section> -->
+        <section class="music section" id="coming-soon">
+            <img src="COMING SOON.png" alt="COMING SOON" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+            <label>Going Up! (SAMPLE)</label>
+            <audio controls>
+                <source src="Going Up! Preview.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <label>If You Were Real (SAMPLE)</label>
+            <audio controls>
+                <source src="If You Were Real (Preview).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </section>
 
         <section class="music section" id="music">
-            <h2 class="visually-hidden">Music</h2>
             <img src="MUSIC.png" alt="MUSIC" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <label>Take On Me</label>
             <audio controls>
@@ -334,22 +327,19 @@
         </section>
 
         <section class="video section" id="video">
-            <h2 class="visually-hidden">Video</h2>
             <img src="VIDEO.png" alt="VIDEO" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <iframe src="https://www.youtube.com/embed/ENZmBshpJpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
 
         <section class="tour section" id="dates">
-            <h2 class="visually-hidden">Dates</h2>
             <img src="DATES.png" alt="DATES" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <ul>
-                <li>October 24th, 2025 - The Fraser, North Bay Ontario</li>
-                <li>November 22nd, 2025 - Match Eatery/Cascades Casino, North Bay Ontario</li>
+                <li>August 31st, 2025 - Ooey Gooey’s, Hamilton, Ontario</li>
+                <li>September 6th, 2025 - Match Eatery, Callander, Ontario</li>
             </ul>
         </section>
 
         <section class="shop section" id="shop">
-            <h2 class="visually-hidden">Merch</h2>
             <img src="MERCH.png" alt="MERCH" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <img src="Shirts.jpg" alt="Greg The Band Merch" style="max-width:100%; height:auto; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1rem;">
             <br>
@@ -357,7 +347,6 @@
         </section>
 
         <section class="contact section" id="booking">
-            <h2 class="visually-hidden">Book Us</h2>
             <img src="BOOK US.png" alt="BOOK US" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <form action="https://formspree.io/f/mpwlyqlw" method="POST">
                 <input type="text" name="name" placeholder="Your Name" required>
