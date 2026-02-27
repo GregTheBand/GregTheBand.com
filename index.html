@@ -115,6 +115,48 @@
         background-color: #F5E8C7;
         border-radius: 5px;
     }
+    .stream-links {
+    	background-color: rgba(255, 255, 255, 0.6);
+    	backdrop-filter: blur(8px);
+    	-webkit-backdrop-filter: blur(5px);
+    	padding: 1.5rem;
+    	border-radius: 20px;
+   	 box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    	text-align: center;
+	}
+
+    .stream-buttons {
+    	display: flex;
+    	justify-content: center;
+    	gap: 1rem;
+    	flex-wrap: wrap;
+	}
+
+    .stream-buttons a {
+    	padding: 0.8rem 1.6rem;
+    	border-radius: 50px;
+    	text-decoration: none;
+    	font-family: 'Chinese Rocks', sans-serif;
+    	font-size: 1.1rem;
+    	transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+/* Spotify Green */
+    .spotify-btn {
+    	background-color: #1DB954;
+    	color: white;
+	}
+
+/* Apple Music Black */
+    .apple-btn {
+    	background-color: #111;
+    	color: white;
+	}
+
+    .stream-buttons a:hover {
+    	transform: translateY(-3px);
+    	box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+	}
     .hero {
         text-align: center;
         padding: 30px 0 2rem;
@@ -217,6 +259,14 @@
     .contact button:hover {
         background-color: #E0D4B1;
     }
+    .contact {
+    	background-color: rgba(255, 255, 255, 0.6);
+    	backdrop-filter: blur(8px);
+    	-webkit-backdrop-filter: blur(5px);
+    	padding: 2rem 1.5rem;
+    	border-radius: 20px;
+    	box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
     footer {
         background-color: #E6F0FA;
         color: #333;
@@ -307,6 +357,22 @@
             <img src="IYWR.png" alt="If You Were Real" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
             <iframe src="https://www.youtube.com/embed/ovQnF2IaO84" title="Greg The Band - If You Were Real" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
+
+	<section class="stream-links section">
+    <div class="stream-buttons">
+        <a href="https://open.spotify.com/artist/57w1EJGqv0kY5Q5cEnRAHQ"
+           target="_blank" rel="noopener noreferrer"
+           class="spotify-btn">
+            Listen on Spotify
+        </a>
+
+        <a href="https://music.apple.com/ca/artist/greg/1848399170"
+           target="_blank" rel="noopener noreferrer"
+           class="apple-btn">
+            Listen on Apple Music
+        </a>
+    </div>
+	</section>
 
         <section class="hero" id="home">
             <img src="Promo2.jpg" alt="Promo 2" class="active">
