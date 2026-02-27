@@ -63,7 +63,7 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        background: url('Wallpaper.png') center top repeat-y;
+        background: url('Wallpaper.jpg') center top repeat-y;
         background-size: cover;
         color: #333;
         overflow-x: hidden;
@@ -80,12 +80,10 @@
         box-sizing: border-box;
     }
     header {
-    	background-color: rgba(255, 255, 255, 0.65); /* semi-transparent */
-    	backdrop-filter: blur(6px);
-    	-webkit-backdrop-filter: blur(6px); /* Safari support */
-    	color: #333;
-    	padding: 1rem;
-    	text-align: center;
+        background-color: #E6F0FA;
+        color: #333;
+        padding: 1rem;
+        text-align: center;
     }
     header img {
         max-width: 100%;
@@ -93,14 +91,13 @@
         width: 500px;
     }
     nav {
-    	background-color: #E6F0FA; /* slightly more transparent */
-    	backdrop-filter: blur(6px);
-    	-webkit-backdrop-filter: blur(6px);
-    	padding: 1rem;
-    	display: flex;
-    	justify-content: center;
-    	align-items: center;
-    	flex-wrap: wrap;
+        background-color: #E6F0FA;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        flex-wrap: wrap;
     }
     nav a {
         color: #333;
@@ -165,8 +162,7 @@
     }
     .tour li {
         margin: 0.5rem 0;
-    font-size: 1.5rem;
-}
+    }
     .contact form {
         display: flex;
         flex-direction: column;
@@ -283,13 +279,24 @@
             <iframe src="https://www.youtube.com/embed/ovQnF2IaO84" title="Greg The Band - If You Were Real" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
 
+        <!-- Stream/Buy Section -->
+        <section class="section" id="stream-buy">
+            <h2 style="font-size:2rem; margin-bottom:1rem; font-family:'Chinese Rocks', sans-serif;">
+                STREAM OR BUY Going Up!
+            </h2>
+            <a href="https://linktr.ee/gregtheband" target="_blank">
+                <img src="AlbumCover.jpg" alt="Going Up! Album Cover" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+            </a>
+        </section>
+
         <section class="hero" id="home">
             <img src="Promo2.jpg" alt="Promo 2" class="active">
             <img src="Promo8.jpg" alt="Promo 8">
             <img src="Promo1.png" alt="Promo 1">
             <img src="Promo3.png" alt="Promo 3">
-            <img src="Promo4.png" alt="Promo 4">
+            <img src="Promo4.jpg" alt="Promo 4">
             <img src="Promo5.jpg" alt="Promo 5">
+            <img src="Promo6.jpg" alt="Promo 6">
             <img src="Promo7.jpg" alt="Promo 7">
         </section>
 
@@ -329,7 +336,7 @@
         <section class="video section" id="video">
             <h2 class="visually-hidden">Video</h2>
             <img src="VIDEO.png" alt="VIDEO" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/tfWEuNaSAHY?si=o5wIrB7Avi__sJSS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/playlist?list=PLEIS0lTU6D-swA9EKgoWBHCV6rMY5jLHF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
 
         <section class="tour section" id="dates">
