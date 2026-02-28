@@ -282,6 +282,42 @@
   	border-radius: 20px;
   	box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
+    .game-wrapper {
+    	position: relative;
+    }
+
+    #gameFrame {
+    	width: 100%;
+    	height: 70vh;
+    	max-height: 700px;
+    	border: none;
+    	display: block;
+    }
+
+    .game-overlay {
+    	position: absolute;
+    	inset: 0;
+    	background: rgba(0,0,0,0.75);
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	z-index: 2;
+    }
+
+    #startGameBtn {
+    	padding: 1rem 2rem;
+    	font-family: 'Chinese Rocks', sans-serif;
+    	font-size: 1.3rem;
+    	border: none;
+    	border-radius: 50px;
+    	background: #F5E8C7;
+    	cursor: pointer;
+    	transition: transform 0.2s ease;
+    }
+
+    #startGameBtn:hover {
+    	transform: scale(1.1);
+    }
 
     #arcade iframe {
   	width: 100%;
@@ -475,13 +511,22 @@
             </form>
         </section>
 
-	<section class="game section" id="arcade">
-      	    <img src="OVERLORDS.png" alt="Overlords!" class="section-title-img">
-  	    	<iframe src="arcade/index.html"
-            		style="border:none;"
-            		allowfullscreen>
-  	    </iframe>
-	</section>
+<section class="game section" id="arcade">
+
+    <img src="OVERLORDS.png" alt="Overlords!" class="section-title-img">
+
+    <div class="game-wrapper">
+        <div class="game-overlay" id="gameOverlay">
+            <button id="startGameBtn">Start Game</button>
+        </div>
+
+        <iframe id="gameFrame"
+                data-src="arcade/index.html"
+                allowfullscreen>
+        </iframe>
+    </div>
+
+</section>
     </main>
 
     <footer>
@@ -506,6 +551,14 @@
         }
         setInterval(showSlides, 4000);
         showSlides();
+	const startBtn = document.getElementById("startGameBtn");
+	const gameFrame = document.getElementById("gameFrame");
+	const overlay = document.getElementById("gameOverlay");
+
+	startBtn.addEventListener("click", function() {
+            gameFrame.src = gameFrame.dataset.src;
+            overlay.style.display = "none";
+	});
     </script>
 </body>
 </html>
