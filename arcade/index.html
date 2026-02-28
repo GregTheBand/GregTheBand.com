@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Space Invaders</title>
-    <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
-    <link rel="stylesheet" href="Styles/main.css">
-    <link rel="icon" href="http://www.unixstickers.com/image/cache/data/stickers/spaceinvaders/Space-medium-invader.sh-600x600.png">
-  </head>
-  <body>
-    <canvas id="background-canvas"></canvas>
-    <canvas id="game-canvas" width="700" height="600"></canvas>
-
-    <script type="text/javascript" src="Scripts/background.js"></script>
-    <script type="text/javascript" src="Scripts/script.js"></script>
-  </body>
+<html>
+	<head>
+		<title>Shooter Game</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<style type="text/css">
+			body {
+				background-color: #000;
+				margin: 0;
+				padding:0;
+				line-height: 0;
+			}	
+			#background {
+				position: absolute;
+				z-index:0;
+				padding:0;
+				margin:0;
+				display:none;
+			}
+			#gameview {
+				position: absolute;
+				z-index:1;
+				margin: 0;
+				padding:0;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="gameview" tabindex="0"></canvas>
+		<img id="background" src="images/background.png">
+		<script type="text/javascript" src="vendor/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="javascripts/Const.js"></script>
+		<script type="text/javascript" src="javascripts/SpaceShip.js"></script>
+		<script type="text/javascript" src="javascripts/CDetection.js"></script>
+		<script type="text/javascript" src="javascripts/Game.js"></script>
+		<script type="text/javascript" src="javascripts/Main.js"></script>
+	</body>
 </html>
+
