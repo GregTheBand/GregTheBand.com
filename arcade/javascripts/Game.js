@@ -446,12 +446,25 @@ SI.Game.prototype.drawStatus = function () {
 }
 
 SI.Game.prototype.newGamePrompt = function (message) {
-	var promptQuestion = message + '\nPlay Again?';
-	var playAgain = confirm(promptQuestion);
-	if (playAgain) {
-		this.initializeGame();
-	}
-}
+	clearInterval(this.clock);
+
+	// Draw overlay text instead of popup
+	this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+	this.ctx.fillRect(0, 0, SI.Sizes.width, SI.Sizes.height);
+
+	this.ctx.fillStyle = "white";
+	this.ctx.font = "40px Arial";
+	this.ctx.textAlign = "center";
+
+	this.ctx.fillText(message, SI.Sizes.width / 2, SI.Sizes.height / 2 - 20);
+	this.ctx.fillText("Click to Play Again", SI.Sizes.width / 2, SI.Sizes.height / 2 + 40);
+
+	var self = this;
+
+	$('#gameview').one('click', function () {
+		self.initializeGame();
+	});
+};
 //===================Sprite Change==============================
 SI.Game.prototype.ChangeEnemySpritePhase = function (ships) {
 	var newImgX;
