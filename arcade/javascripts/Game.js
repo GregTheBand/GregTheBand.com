@@ -604,7 +604,7 @@ SI.Game.prototype.newGamePrompt = function (message) {
 	this.ctx.fillRect(0, 0, SI.Sizes.width, SI.Sizes.height);
 
 	this.ctx.fillStyle = "white";
-	this.ctx.font = "40px Arial";
+	this.ctx.font = "14px Arial";
 	this.ctx.textAlign = "center";
 
 	this.ctx.fillText(message, SI.Sizes.width / 2, SI.Sizes.height / 2 - 20);
