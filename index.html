@@ -275,6 +275,11 @@
     	margin-left: auto;
     	margin-right: auto;
     }
+  /* Prevent browser gestures from hijacking touches on the embedded game */
+  #gameFrame {
+    touch-action: none;          /* stops pinch-zoom/pan gestures */
+    -ms-touch-action: none;
+  }
     .game {
   	background: rgba(255,255,255,0.6);
   	backdrop-filter: blur(8px);
