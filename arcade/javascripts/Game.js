@@ -26,7 +26,12 @@ SI.Game = function() {
 	this.musicPlaying = false;
 	this.musicUnlocked = false;
 
+	// SFX
+	this.playerSfx = null;
+	this.enemySfx = null;
 
+	// Player SFX cadence: play every 3rd or 4th *successful* shot
+	this.playerShotsUntilSfx = 3 + Math.floor(Math.random() * 2);
 }
 
 
@@ -77,8 +82,54 @@ SI.Game.prototype.stopMusic = function () {
 	this.musicPlaying = false;
 };
 
+/*
+ * SFX helpers
+ * Defaults:
+ *  - sounds/player.mp3 (played every 3rd or 4th shot)
+ *  - sounds/enemy.mp3  (played every enemy shot)
+ *
+ * Optional overrides:
+ *  SI.Sounds.playerSfx / SI.Sounds.enemySfx / SI.Sounds.sfxVolumePlayer / SI.Sounds.sfxVolumeEnemy
+ */
+SI.Game.prototype.initializeSfx = function () {
+	if (this.playerSfx && this.enemySfx) return;
+
+	var playerSrc = (SI.Sounds && SI.Sounds.playerSfx) ? SI.Sounds.playerSfx : 'sounds/player.mp3';
+	var enemySrc = (SI.Sounds && SI.Sounds.enemySfx) ? SI.Sounds.enemySfx : 'sounds/enemy.mp3';
+
+	try {
+		if (!this.playerSfx) {
+			this.playerSfx = new Audio(playerSrc);
+			this.playerSfx.volume = (SI.Sounds && typeof SI.Sounds.sfxVolumePlayer === 'number') ? SI.Sounds.sfxVolumePlayer : 0.6;
+		}
+		if (!this.enemySfx) {
+			this.enemySfx = new Audio(enemySrc);
+			this.enemySfx.volume = (SI.Sounds && typeof SI.Sounds.sfxVolumeEnemy === 'number') ? SI.Sounds.sfxVolumeEnemy : 0.6;
+		}
+	} catch (e) {
+		this.playerSfx = this.playerSfx || null;
+		this.enemySfx = this.enemySfx || null;
+	}
+};
+
+SI.Game.prototype.playSfx = function (baseAudio) {
+	if (!baseAudio) return;
+
+	// cloneNode lets overlapping shots play without cutting each other off
+	try {
+		var a = baseAudio.cloneNode();
+		a.volume = baseAudio.volume;
+
+		var p = a.play();
+		if (p && typeof p.catch === 'function') {
+			p.catch(function () {});
+		}
+	} catch (e) {}
+};
+
 SI.Game.prototype.unlockAudio = function () {
 	this.initializeMusic();
+	this.initializeSfx();
 	if (!this.bgMusic || this.musicUnlocked) return;
 
 	// Attempt to unlock audio on the first user interaction (needed on many mobile browsers)
@@ -200,6 +251,10 @@ SI.Game.prototype.initializeGame = function () {
 	this.frames = 0;
 	this.enemySpeed = SI.Sizes.enemyStepHort;
 
+	// reset player SFX cadence each game start
+	this.playerShotsUntilSfx = 3 + Math.floor(Math.random() * 2);
+
+	this.initializeSfx();
 	this.startMusic();
 
 	var self = this;
@@ -220,14 +275,12 @@ SI.Game.prototype.initializeGame = function () {
 SI.Game.prototype.checkEndGame = function () {
 	if(this.enemies.ships.length == 0) {
 		clearInterval(this.clock);
-		this.stopMusic();
 		this.newGamePrompt('You Win!');
 	}
 	else if(this.lives == 0 ||
 			this.enemies.ships[this.enemies.ships.length - 1][0].y >=
 			SI.Sizes.bottomMargin - SI.Sizes.enemyHeight) {
 		clearInterval(this.clock);
-		this.stopMusic();
 		this.newGamePrompt('You Lost!');
 	}
 }
@@ -338,6 +391,7 @@ SI.Game.prototype.checkPlayerStatus = function () {
 		this.lives -= 1;
 	}
 }
+
 SI.Game.prototype.launchEnemyRocket = function () {
 	if(this.turnToFire == SI.Sizes.turnUntilFire) {
 		var row = Math.floor(Math.random() * this.enemies.ships.length);
@@ -347,6 +401,10 @@ SI.Game.prototype.launchEnemyRocket = function () {
 			x: ship.x + ship.width / 2,
 			y: ship.y + ship.height / 2,
 			direction: SI.Directions.Down}));
+
+		// Enemy SFX every shot
+		this.playSfx(this.enemySfx);
+
 		this.turnToFire = 0;
 	}
 	else {
@@ -361,6 +419,13 @@ SI.Game.prototype.launchPlayerRocket = function () {
 				x: this.playerShip.x + this.playerShip.width / 2 - SI.Sizes.rocketWidth / 2,
 				y: this.playerShip.y,
 				direction: SI.Directions.Up}));
+
+			// Player SFX every 3rd or 4th successful shot
+			this.playerShotsUntilSfx -= 1;
+			if (this.playerShotsUntilSfx <= 0) {
+				this.playSfx(this.playerSfx);
+				this.playerShotsUntilSfx = 3 + Math.floor(Math.random() * 2);
+			}
 		}
 }
 /*
@@ -533,7 +598,6 @@ SI.Game.prototype.drawStatus = function () {
 
 SI.Game.prototype.newGamePrompt = function (message) {
 	clearInterval(this.clock);
-	this.stopMusic();
 
 	// Draw overlay text instead of popup
 	this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
