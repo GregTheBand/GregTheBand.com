@@ -21,13 +21,92 @@ SI.Game = function() {
 	// clearance to fire again (enemies)
 	this.turnToFire = 0;
 
+	// Background music
+	this.bgMusic = null;
+	this.musicPlaying = false;
+	this.musicUnlocked = false;
+
 
 }
+
+
+/*
+ * Music helpers
+ * - Plays when the game is running
+ * - Stops when the player wins/loses
+ *
+ * Set SI.Sounds.bgMusic to override the default path.
+ * Example: SI.Sounds = { bgMusic: 'sounds/music.mp3', bgMusicVolume: 0.35 };
+ */
+SI.Game.prototype.initializeMusic = function () {
+	if (this.bgMusic) return;
+
+	var src = (SI.Sounds && SI.Sounds.bgMusic) ? SI.Sounds.bgMusic : 'sounds/music.mp3';
+	try {
+		this.bgMusic = new Audio(src);
+		this.bgMusic.loop = true;
+		this.bgMusic.volume = (SI.Sounds && typeof SI.Sounds.bgMusicVolume === 'number') ? SI.Sounds.bgMusicVolume : 0.35;
+	} catch (e) {
+		this.bgMusic = null;
+	}
+};
+
+SI.Game.prototype.startMusic = function () {
+	this.initializeMusic();
+	if (!this.bgMusic || this.musicPlaying) return;
+
+	try {
+		var p = this.bgMusic.play();
+		// Some browsers return a promise; ignore rejections (autoplay policies)
+		if (p && typeof p.catch === 'function') {
+			p.catch(function () {});
+		}
+		this.musicPlaying = true;
+	} catch (e) {
+		this.musicPlaying = false;
+	}
+};
+
+SI.Game.prototype.stopMusic = function () {
+	if (!this.bgMusic) return;
+
+	try {
+		this.bgMusic.pause();
+		this.bgMusic.currentTime = 0;
+	} catch (e) {}
+	this.musicPlaying = false;
+};
+
+SI.Game.prototype.unlockAudio = function () {
+	this.initializeMusic();
+	if (!this.bgMusic || this.musicUnlocked) return;
+
+	// Attempt to unlock audio on the first user interaction (needed on many mobile browsers)
+	try {
+		var self = this;
+		var p = this.bgMusic.play();
+		if (p && typeof p.then === 'function') {
+			p.then(function () {
+				self.musicUnlocked = true;
+				// If the game is not currently running, stop immediately after unlocking.
+				if (!self.clock) {
+					self.stopMusic();
+				}
+			}).catch(function () {});
+		} else {
+			this.musicUnlocked = true;
+			if (!this.clock) {
+				this.stopMusic();
+			}
+		}
+	} catch (e) {}
+};
 
 SI.Game.prototype.start = function () {
 	this.initializeCanvas();
 	this.attachKeyboardEvents();
 	this.initializeGame();
+	this.startMusic();
 	this.drawAllElements();
 }
 
@@ -57,12 +136,14 @@ SI.Game.prototype.attachKeyboardEvents = function() {
 
 	// Focus canvas when clicked
 	$canvas.on('click', function() {
+		self.unlockAudio();
 		this.focus();
 	});
 
 	// Keydown only when canvas is focused
 	$canvas.on('keydown', function(e) {
 
+		self.unlockAudio();
 		// Prevent page scrolling for arrows + space
 		if ([37, 38, 39, 40, 32].includes(e.which)) {
 			e.preventDefault();
@@ -84,6 +165,7 @@ SI.Game.prototype.attachKeyboardEvents = function() {
 
 	$(document).bind('touchstart', function (e) {
 		e.preventDefault();
+		self.unlockAudio();
 		self.launchPlayerRocket();
 	});
 }
@@ -118,6 +200,8 @@ SI.Game.prototype.initializeGame = function () {
 	this.frames = 0;
 	this.enemySpeed = SI.Sizes.enemyStepHort;
 
+	this.startMusic();
+
 	var self = this;
 	this.clock = setInterval(function () {	
 		self.moveAllElements();
@@ -136,12 +220,14 @@ SI.Game.prototype.initializeGame = function () {
 SI.Game.prototype.checkEndGame = function () {
 	if(this.enemies.ships.length == 0) {
 		clearInterval(this.clock);
+		this.stopMusic();
 		this.newGamePrompt('You Win!');
 	}
 	else if(this.lives == 0 ||
 			this.enemies.ships[this.enemies.ships.length - 1][0].y >=
 			SI.Sizes.bottomMargin - SI.Sizes.enemyHeight) {
 		clearInterval(this.clock);
+		this.stopMusic();
 		this.newGamePrompt('You Lost!');
 	}
 }
@@ -447,6 +533,7 @@ SI.Game.prototype.drawStatus = function () {
 
 SI.Game.prototype.newGamePrompt = function (message) {
 	clearInterval(this.clock);
+	this.stopMusic();
 
 	// Draw overlay text instead of popup
 	this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
