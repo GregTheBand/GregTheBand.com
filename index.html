@@ -209,15 +209,23 @@
         aspect-ratio: 16 / 9;
     }
 
-    /* Native Going Up? trailer */
+    /* Native Going Up? trailer — shrink-wrap the frosted pane to the portrait video */
+    .trailer {
+        width: fit-content;
+        max-width: calc(100% - 2rem);
+        align-self: center;
+        padding: 1rem;
+    }
+
     .trailer video {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
+        width: auto;
+        height: min(60vh, 600px);
+        max-width: calc(100vw - 4rem);
         display: block;
         margin: 0 auto;
         border-radius: 8px;
         background: #000;
+        object-fit: contain;
     }
     .video {
     	background-color: rgba(255, 255, 255, 0.6);
