@@ -208,6 +208,17 @@
         height: auto;
         aspect-ratio: 16 / 9;
     }
+
+    /* Native Going Up? trailer */
+    .trailer video {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 8px;
+        background: #000;
+    }
     .video {
     	background-color: rgba(255, 255, 255, 0.6);
     	backdrop-filter: blur(8px);
@@ -386,13 +397,33 @@
     .tour,
     .shop,
     .contact,
-    .game {
+    .game,
+    .hero {
         background-color: rgba(255, 255, 255, 0.42);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
         border: none;
+    }
+
+    /* Slideshow pane: same frosted treatment as the other sections, with a square image area inside */
+    .hero {
+        padding: 2rem 1.5rem;
+        aspect-ratio: auto;
+        min-height: 0;
+        overflow: visible;
+        box-sizing: border-box;
+    }
+
+    .hero-link {
+        position: relative;
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        border-radius: 8px;
+        cursor: pointer;
     }
 
     /* Keep the logo/title and navigation the same width as the main content panes */
@@ -422,11 +453,14 @@
         .hero {
             aspect-ratio: auto;
             height: auto;
-            padding: 1rem 0;
+            padding: 1rem;
+        }
+        .hero-link {
+            aspect-ratio: 1 / 1;
         }
         .hero img {
-            height: auto;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
         }
         .section {
             padding: 1rem;
@@ -461,6 +495,15 @@
         <a href="#booking">BOOK US</a>
     </nav>
     <main>
+        <!-- Going Up? trailer -->
+        <section class="video section trailer" id="going-up-trailer">
+            <h2 class="visually-hidden">Going Up? Trailer</h2>
+            <video controls playsinline preload="metadata" aria-label="Going Up? trailer">
+                <source src="GoingUpTrailerFInaleNoche.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
         <!-- Watch 'If You Were Real' Now!! video section -->
         <section class="video section" id="coming-soon-video">
             <img src="IYWR.png" alt="If You Were Real" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
