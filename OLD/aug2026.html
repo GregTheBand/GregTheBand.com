@@ -132,11 +132,6 @@
     	flex-wrap: wrap;
 	}
 
-
-    .album-stream-buttons {
-        margin-top: 1.25rem;
-    }
-
     .stream-buttons a {
     	padding: 0.8rem 1.6rem;
     	border-radius: 50px;
@@ -214,41 +209,23 @@
         aspect-ratio: 16 / 9;
     }
 
-    /* Going Up? album splash */
+    /* Native Going Up? trailer — shrink-wrap the frosted pane to the portrait video */
     .trailer {
-        width: 100%;
-        max-width: 800px;
+        width: fit-content;
+        max-width: calc(100% - 2rem);
         align-self: center;
-        padding: 2rem 1.5rem;
-        box-sizing: border-box;
+        padding: 1rem;
     }
 
-    .album-title {
+    .trailer video {
+        width: auto;
+        height: min(60vh, 600px);
+        max-width: calc(100vw - 4rem);
         display: block;
-        width: min(100%, 520px);
-        height: auto;
-        margin: 0 auto 1rem;
-    }
-
-    .album-cover-link {
-        display: block;
-        width: 100%;
-        max-width: 700px;
         margin: 0 auto;
         border-radius: 8px;
-        overflow: hidden;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .album-cover-link:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    }
-
-    .album-cover {
-        display: block;
-        width: 100%;
-        height: auto;
+        background: #000;
+        object-fit: contain;
     }
     .video {
     	background-color: rgba(255, 255, 255, 0.6);
@@ -526,26 +503,13 @@
         <a href="#booking">BOOK US</a>
     </nav>
     <main>
-        <!-- Going Up? album splash -->
-        <section class="video section trailer" id="going-up-album">
-            <h2 class="visually-hidden">Buy Going Up?</h2>
-            <img src="BuyGoingUp.png" alt="Buy Going Up?" class="album-title">
-            <a class="album-cover-link" href="https://linktr.ee/going_up" target="_blank" rel="noopener noreferrer" aria-label="Buy or stream Going Up?">
-                <img src="AlbumCover.png" alt="Going Up? album cover" class="album-cover">
-            </a>
-            <div class="stream-buttons album-stream-buttons">
-                <a href="https://open.spotify.com/artist/57w1EJGqv0kY5Q5cEnRAHQ"
-                   target="_blank" rel="noopener noreferrer"
-                   class="spotify-btn">
-                    Listen on Spotify
-                </a>
-
-                <a href="https://music.apple.com/ca/artist/greg/1848399170"
-                   target="_blank" rel="noopener noreferrer"
-                   class="apple-btn">
-                    Listen on Apple Music
-                </a>
-            </div>
+        <!-- Going Up? trailer -->
+        <section class="video section trailer" id="going-up-trailer">
+            <h2 class="visually-hidden">Going Up? Trailer</h2>
+            <video controls playsinline preload="metadata" aria-label="Going Up? trailer">
+                <source src="GoingUpTrailerFInaleNoche.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </section>
 
         <!-- Watch 'If You Were Real' Now!! video section -->
@@ -603,6 +567,22 @@
                 <source src="Mr Blue Sky.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+        </section>
+
+        <section class="stream-links section">
+            <div class="stream-buttons">
+                <a href="https://open.spotify.com/artist/57w1EJGqv0kY5Q5cEnRAHQ"
+                   target="_blank" rel="noopener noreferrer"
+                   class="spotify-btn">
+                    Listen on Spotify
+                </a>
+
+                <a href="https://music.apple.com/ca/artist/greg/1848399170"
+                   target="_blank" rel="noopener noreferrer"
+                   class="apple-btn">
+                    Listen on Apple Music
+                </a>
+            </div>
         </section>
 
         <section class="video section" id="video">
